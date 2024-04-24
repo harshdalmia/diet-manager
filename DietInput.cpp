@@ -12,7 +12,7 @@ using namespace std;
 
 class dietdetails
 {
-private:
+public:
     string fname;
     string lname;
     char sex;
@@ -21,8 +21,9 @@ private:
     float weight;
     int age;
     string dietype;
+    string goal;
     
-public:
+
     bool veg;
     // Function to input user details
     void inputUserDetails()
@@ -192,7 +193,7 @@ public:
 
     cout << "BMI: " << bmi << endl;
     cout << "Fat Percentage: " << fatPercentage << endl;
-    string goal;
+    
 
     if (sex == 'M') {
         if (bmi < 18.5) {
@@ -216,4 +217,4 @@ public:
     
 
     }
-};
+}; 
