@@ -1,12 +1,9 @@
 #include <iostream>
 #include <string>
-#include "DietInput.cpp"
 using namespace std;
 
 class DietType {
 public:
-    struct DietPlan 
-    {
         string vegbreakfast;
         int breakfastCalories;
         string veglunch;
@@ -22,32 +19,29 @@ public:
         int mcal;
         int gcal;
         int lcal;
-    };
 
 public:
     DietType() {
         // Set default values for all variables
-        dietPlan.vegbreakfast = "Oatmeal with fruits";
-        dietPlan.breakfastCalories = 500;
-        dietPlan.veglunch = "Vegetable salad with tofu";
-        dietPlan.lunchCalories = 600;
-        dietPlan.vegsnacks = "Carrot sticks with hummus";
-        dietPlan.snacksCalories = 350;
-        dietPlan.vegdinner = "Quinoa with mixed vegetables";
-        dietPlan.dinnerCalories = 650;
-        dietPlan.nonvegbreakfast = "Scrambled eggs with whole grain toast";
-        dietPlan.nonveglunch = "Grilled chicken breast with brown rice";
-        dietPlan.nonvegsnacks =  "Greek yogurt with almonds";
-        dietPlan.nonvegdinner = "Baked salmon with steamed vegetables" ;
-        int mcal = 2100;
-        int gcal = 2550;
-        int lcal = 1650;
+        vegbreakfast = "Oatmeal with fruits";
+        breakfastCalories = 500;
+        veglunch = "Vegetable salad with tofu";
+        lunchCalories = 600;
+        vegsnacks = "Carrot sticks with hummus";
+        snacksCalories = 350;
+        vegdinner = "Quinoa with mixed vegetables";
+        dinnerCalories = 650;
+        nonvegbreakfast = "Scrambled eggs with whole grain toast";
+        nonveglunch = "Grilled chicken breast with brown rice";
+        nonvegsnacks =  "Greek yogurt with almonds";
+        nonvegdinner = "Baked salmon with steamed vegetables" ;
+        mcal = 2100;
+        gcal = 2550;
+        lcal = 1650;
     }
 
     virtual void printDietPlan() const = 0;
 
-public:
-    DietPlan dietPlan;
 };
 
 class VegDiet : public DietType {
@@ -56,24 +50,24 @@ public:
     this->goal = goal;
         // Adjust calories based on goal
         if (goal == "Underweight") {
-            dietPlan.breakfastCalories -= 100;
-            dietPlan.lunchCalories -= 100;
-            dietPlan.snacksCalories -= 50;
-            dietPlan.dinnerCalories -= 200;
+            breakfastCalories -= 100;
+            lunchCalories -= 100;
+            snacksCalories -= 50;
+            dinnerCalories -= 200;
         } else if (goal == "Overweight") {
-            dietPlan.breakfastCalories += 100;
-            dietPlan.lunchCalories += 100;
-            dietPlan.snacksCalories += 50;
-            dietPlan.dinnerCalories += 200;
+            breakfastCalories += 100;
+            lunchCalories += 100;
+            snacksCalories += 50;
+            dinnerCalories += 200;
         }
     }
 
     void printDietPlan() const override {
         cout << "----- Veg Diet Plan -----" << endl;
-        cout << "Breakfast: " << dietPlan.vegbreakfast << " (Calories: " << dietPlan.breakfastCalories << ")" << endl;
-        cout << "Lunch: " << dietPlan.veglunch << " (Calories: " << dietPlan.lunchCalories << ")" << endl;
-        cout << "Snacks: " << dietPlan.vegsnacks << " (Calories: " << dietPlan.snacksCalories << ")" << endl;
-        cout << "Dinner: " << dietPlan.vegdinner << " (Calories: " << dietPlan.dinnerCalories << ")" << endl;
+        cout << "Breakfast: " << vegbreakfast << " (Calories: " << breakfastCalories << ")" << endl;
+        cout << "Lunch: " << veglunch << " (Calories: " << lunchCalories << ")" << endl;
+        cout << "Snacks: " <<vegsnacks << " (Calories: " << snacksCalories << ")" << endl;
+        cout << "Dinner: " <<vegdinner << " (Calories: " << dinnerCalories << ")" << endl;
     }
 
 public:
@@ -86,51 +80,26 @@ public:
     this->goal = goal;
         // Adjust calories based on goal
         if (goal == "Underweight") {
-            dietPlan.breakfastCalories -= 100;
-            dietPlan.lunchCalories -= 100;
-            dietPlan.snacksCalories -= 50;
-            dietPlan.dinnerCalories -= 200;
-        } else if (goal == "Overweight") {
-            dietPlan.breakfastCalories += 100;
-            dietPlan.lunchCalories += 100;
-            dietPlan.snacksCalories += 50;
-            dietPlan.dinnerCalories += 200;
+            breakfastCalories -= 100;
+            lunchCalories -= 100;
+            snacksCalories -= 50;
+            dinnerCalories -= 200;
+        } else if (goal == "Overweight"){
+        breakfastCalories += 100;    
+        lunchCalories += 100;   
+        snacksCalories += 50;    
+        dinnerCalories += 200;
         }
     }
 
     void printDietPlan() const override {
         cout << "----- Non Veg Diet Plan -----" << endl;
-        cout << "Breakfast: " << dietPlan.nonvegbreakfast << " (Calories: " << dietPlan.breakfastCalories << ")" << endl;
-        cout << "Lunch: " << dietPlan.nonveglunch << " (Calories: " << dietPlan.lunchCalories << ")" << endl;
-        cout << "Snacks: " << dietPlan.nonvegsnacks << " (Calories: " << dietPlan.snacksCalories << ")" << endl;
-        cout << "Dinner: " << dietPlan.nonvegdinner << " (Calories: " << dietPlan.dinnerCalories << ")" << endl;
+        cout << "Breakfast: " << nonvegbreakfast << " (Calories: " <<breakfastCalories << ")" << endl;
+        cout << "Lunch: " << nonveglunch << " (Calories: " << lunchCalories << ")" << endl;
+        cout << "Snacks: " <<nonvegsnacks << " (Calories: " <<snacksCalories << ")" << endl;
+        cout << "Dinner: " <<nonvegdinner << " (Calories: " <<dinnerCalories << ")" << endl;
     }
 
 public:
     string goal;
 };
-
-
-int func() {
-    DietType *dietType;
-    dietdetails d;
-    d.inputUserDetails();
-    d.determineDietPlan();
-    string diet;
-
-    if (d.veg==1) {
-        diet = new VegDiet(d.goal);
-    } else if (d.veg==0) {
-        diet = new NonVegDiet(d.goal);
-    } else {
-        cout << "Invalid choice!" << endl;
-        return 1;
-    }
-
-    diet->printDietPlan();
-    return 0;
-}
-int main() {
-    func();
-    return 0;
-}
