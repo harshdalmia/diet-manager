@@ -5,7 +5,8 @@ using namespace std;
 
 class DietType {
 public:
-    struct DietPlan {
+    struct DietPlan 
+    {
         string vegbreakfast;
         int breakfastCalories;
         string veglunch;
@@ -24,17 +25,20 @@ public:
     DietType() {
         // Set default values for all variables
         dietPlan.vegbreakfast = "Oatmeal with fruits";
-        dietPlan.breakfastCalories = 300;
+        dietPlan.breakfastCalories = 500;
         dietPlan.veglunch = "Vegetable salad with tofu";
-        dietPlan.lunchCalories = 400;
+        dietPlan.lunchCalories = 600;
         dietPlan.vegsnacks = "Carrot sticks with hummus";
-        dietPlan.snacksCalories = 150;
+        dietPlan.snacksCalories = 350;
         dietPlan.vegdinner = "Quinoa with mixed vegetables";
-        dietPlan.dinnerCalories = 450;
+        dietPlan.dinnerCalories = 650;
         dietPlan.nonvegbreakfast = "Scrambled eggs with whole grain toast";
         dietPlan.nonveglunch = "Grilled chicken breast with brown rice";
         dietPlan.nonvegsnacks =  "Greek yogurt with almonds";
         dietPlan.nonvegdinner = "Baked salmon with steamed vegetables" ;
+        int mcal = 2100;
+        int gcal = 2550;
+        int lcal = 1650;
     }
 
     virtual void printDietPlan() const = 0;
@@ -45,18 +49,18 @@ public:
 
 class VegDiet : public DietType {
 public:
-    VegDiet(string goal) : goal(goal) {
+    VegDiet(goal) : goal(goal) {
         // Adjust calories based on goal
         if (goal == "Lose") {
             dietPlan.breakfastCalories -= 100;
             dietPlan.lunchCalories -= 100;
             dietPlan.snacksCalories -= 50;
-            dietPlan.dinnerCalories -= 100;
+            dietPlan.dinnerCalories -= 200;
         } else if (goal == "Gain") {
             dietPlan.breakfastCalories += 100;
             dietPlan.lunchCalories += 100;
             dietPlan.snacksCalories += 50;
-            dietPlan.dinnerCalories += 100;
+            dietPlan.dinnerCalories += 200;
         }
     }
 
@@ -74,18 +78,18 @@ public:
 
 class NonVegDiet : public DietType {
 public:
-    NonVegDiet(string goal) : goal(goal) {
+    NonVegDiet(goal) : goal(goal) {
         // Adjust calories based on goal
         if (goal == "Lose") {
             dietPlan.breakfastCalories -= 100;
             dietPlan.lunchCalories -= 100;
             dietPlan.snacksCalories -= 50;
-            dietPlan.dinnerCalories -= 100;
+            dietPlan.dinnerCalories -= 200;
         } else if (goal == "Gain") {
             dietPlan.breakfastCalories += 100;
             dietPlan.lunchCalories += 100;
             dietPlan.snacksCalories += 50;
-            dietPlan.dinnerCalories += 100;
+            dietPlan.dinnerCalories += 200;
         }
     }
 
