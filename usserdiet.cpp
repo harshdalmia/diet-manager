@@ -74,56 +74,79 @@ void dinner(){
     }
 }
 int finalcalories= totalbfoodcal+totallfoodcal+totalsfoodcal+totaldfoodcal;
-void display()
+void display(dietdetails &diet) 
 {
+    DietType *d;
     cout<< "your total calories are"<<finalcalories<<endl;
-    if(goal=="loss")
+    if(diet.goal=="Underweight")
     {
-        cout<<"your reqired calories are"<<endl;//need to enter required caloreies;
-        if(finalcalories-requiredcalories>0)
+        cout<<"your reqired calories are"<<d->dietPlan.lcal<<endl;//need to enter required caloreies;
+        if(finalcalories-d->dietPlan.lcal>0)
+        {
+            cout << "you need to create a deficit of" <<(finalcalories-d->dietPlan.lcal)<<endl;//need to enter finalcalories -requiredcalories and either deficit or surplus
+        }
+        else if(finalcalories-d->dietPlan.lcal<=0)
+        {
+            cout << "you can continue your diet plan" <<(finalcalories-d->dietPlan.lcal)<<endl;//need to enter finalcalories -requiredcalories and either deficit or surplus
+        }
+         cout<<"your suggested diet plan is"<<endl;//need to call our diet plan
+        if(diet.veg==true)
+        {
+            VegDiet v(diet.goal);
+            v.printDietPlan();
+        }
+        else{
+            NonVegDiet nv(diet.goal);
+            nv.printDietPlan();
+        }
+    }
+    if(diet.goal=="Overweight")
+    {
+        cout<<"your reqired calories are"<<d->dietPlan.gcal<<endl;//need to enter required caloreies;
+        if(finalcalories-d->dietPlan.gcal>0)
         {
             cout << "you need to create a deficit of" <<endl;//need to enter finalcalories -requiredcalories and either deficit or surplus
         }
-        else if(finalcalories-requiredcalories<=0)
+        else if(finalcalories-d->dietPlan.gcal<=0)
         {
-            cout << "you can continue your diet plan" <<endl;//need to enter finalcalories -requiredcalories and either deficit or surplus
+            cout << "you can continue your diet plan"<<(finalcalories-d->dietPlan.gcal)<<endl;//need to enter finalcalories -requiredcalories and either deficit or surplus
         }
-        cout<<"your suggested diet plan is"<<endl//need to call our diet plan
+        cout<<"your suggested diet plan is"<<endl;
+        if(diet.veg==true)
+        {
+            VegDiet v(diet.goal);
+            v.printDietPlan();
+        }
+        else{
+            NonVegDiet nv(diet.goal);
+            nv.printDietPlan();
+        }
     }
-    if(goal=="gain")
+    if(diet.goal=="Healthy")
     {
-        cout<<"your reqired calories are"<<endl;//need to enter required caloreies;
-        if(finalcalories-requiredcalories>0)
+        cout<<"your reqired calories are"<<d->dietPlan.mcal<<endl;//need to enter required caloreies;
+        if(finalcalories-d->dietPlan.mcal>0)
         {
-            cout << "you need to create a deficit of" <<endl;//need to enter finalcalories -requiredcalories and either deficit or surplus
+            cout << "you need to create a deficit of"<<(finalcalories-d->dietPlan.mcal) <<endl;
         }
-        else if(finalcalories-requiredcalories<=0)
-        {
-            cout << "you can continue your diet plan" <<endl;//need to enter finalcalories -requiredcalories and either deficit or surplus
-        }
-        cout<<"your suggested diet plan is"<<endl;//need to call our diet plan
-    }
-    if(goal=="nil")
-    {
-        cout<<"your reqired calories are"<<endl;//need to enter required caloreies;
-        if(finalcalories-requiredcalories>0)
-        {
-            cout << "you need to create a deficit of" <<endl;//need to enter finalcalories -requiredcalories deficit 
-        }
-        else if(finalcalories-requiredcalories==0)
+        else if(finalcalories-d->dietPlan.mcal==0)
         {
             cout << "you can continue your diet plan" <<endl;
         }
         else
         {
-            cout<< "you need to create a surplus of"<<endl;//need to enter finalcalories - requiredcalories surplus
+            cout<< "you need to create a surplus of"<<(finalcalories-d->dietPlan.mcal)<<endl;
         }
-        cout<<"your suggested diet plan is"<<endl//need to call our diet plan
+        cout<<"your suggested diet plan is"<<endl;//need to call our diet plan
+        if(diet.veg==true)
+        {
+            VegDiet v(diet.goal);
+            v.printDietPlan();
+        }
+        else{
+            NonVegDiet nv(diet.goal);
+            nv.printDietPlan();
     }
 
 }
-int main(){
-    dietdetails c;
-    c.inputUserDetails();
-    c.determineDietPlan();
 }
