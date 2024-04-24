@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include "Dietinput.cpp"
+#include "dietplan.cpp"
 using namespace std;
 int totalbfoodcal;
 void breakfast()
@@ -75,10 +77,53 @@ int finalcalories= totalbfoodcal+totallfoodcal+totalsfoodcal+totaldfoodcal;
 void display()
 {
     cout<< "your total calories are"<<finalcalories<<endl;
-    cout<<"your reqired calories are"<<endl;//need to enter required caloreies;
-    cout << "you need to create a" <<endl;//need to enter finalcalories -requiredcalories and either deficit or surplus
-   
+    if(goal=="loss")
+    {
+        cout<<"your reqired calories are"<<endl;//need to enter required caloreies;
+        if(finalcalories-requiredcalories>0)
+        {
+            cout << "you need to create a deficit of" <<endl;//need to enter finalcalories -requiredcalories and either deficit or surplus
+        }
+        else if(finalcalories-requiredcalories<=0)
+        {
+            cout << "you can continue your diet plan" <<endl;//need to enter finalcalories -requiredcalories and either deficit or surplus
+        }
+        cout<<"your suggested diet plan is"<<endl//need to call our diet plan
+    }
+    if(goal=="gain")
+    {
+        cout<<"your reqired calories are"<<endl;//need to enter required caloreies;
+        if(finalcalories-requiredcalories>0)
+        {
+            cout << "you need to create a deficit of" <<endl;//need to enter finalcalories -requiredcalories and either deficit or surplus
+        }
+        else if(finalcalories-requiredcalories<=0)
+        {
+            cout << "you can continue your diet plan" <<endl;//need to enter finalcalories -requiredcalories and either deficit or surplus
+        }
+        cout<<"your suggested diet plan is"<<endl;//need to call our diet plan
+    }
+    if(goal=="nil")
+    {
+        cout<<"your reqired calories are"<<endl;//need to enter required caloreies;
+        if(finalcalories-requiredcalories>0)
+        {
+            cout << "you need to create a deficit of" <<endl;//need to enter finalcalories -requiredcalories deficit 
+        }
+        else if(finalcalories-requiredcalories==0)
+        {
+            cout << "you can continue your diet plan" <<endl;
+        }
+        else
+        {
+            cout<< "you need to create a surplus of"<<endl;//need to enter finalcalories - requiredcalories surplus
+        }
+        cout<<"your suggested diet plan is"<<endl//need to call our diet plan
+    }
+
 }
 int main(){
-    breakfast();
+    dietdetails c;
+    c.inputUserDetails();
+    c.determineDietPlan();
 }
