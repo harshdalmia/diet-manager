@@ -10,7 +10,7 @@ using namespace std;
 #define MIN_WEIGHT 1.0
 #define MAX_WEIGHT 500.0
 
-class dietdetails 
+class dietdetails
 {
 private:
     string fname;
@@ -20,16 +20,16 @@ private:
     float height;
     float weight;
     int age;
-
+    string dietype;
+    
 public:
+    bool veg;
     // Function to input user details
-    void inputUserDetails() 
+    void inputUserDetails()
     {
-        
-           
-            bool isvalid=false;
-            while(!isvalid)
-            {
+        bool isvalid=false;
+        while(!isvalid)
+        {
             cout << "Enter First name: ";
             cin>>fname;
             for(char c:fname)
@@ -42,11 +42,11 @@ public:
                 }
                 isvalid=true;
             }
-            
-            }
-            isvalid=false;
-            while(!isvalid)
-            {
+        }
+
+        isvalid=false;
+        while(!isvalid)
+        {
             cout << "Enter last name: ";
             cin>>lname;
             for(char c:lname)
@@ -57,14 +57,14 @@ public:
                     isvalid=false;
                     break;
                 }
+                
                 isvalid=true;
             }
-            }
-            isvalid=false;
-            
-            
-            
-            while (!isvalid) {   
+        }
+        isvalid=false;
+
+        
+        while (!isvalid) {
             cout << "Enter sex (M/F): ";
             cin >> sex;
             if (sex != 'M' && sex != 'F') {
@@ -73,109 +73,147 @@ public:
             } else {
                 isvalid = true;
             }
-            }   
+        }
 
-            isvalid=false;
-            while(!isvalid)
-            {
+        isvalid = false;
+
+        while (!isvalid) 
+        {
             cout << "Enter blood type: ";
-            cin.ignore(); 
-            cin>>bloodType;
-            if(bloodType != "A+" && bloodType != "A-" &&bloodType != "B+" && bloodType != "B-" &&bloodType != "AB+" && bloodType != "AB-" &&bloodType != "O+" && bloodType != "O-")
+            cin >> bloodType;
+
+            if (bloodType != "A+" && bloodType != "A-" && bloodType != "B+" && bloodType != "B-" &&bloodType != "AB+" && bloodType != "AB-" && bloodType != "O+" && bloodType != "O-") {
+                isvalid = false;
+                cout << "Invalid Input. Please try again using A+/B- in the exact way." << endl;
+            } 
+            else {
+                isvalid = true;
+            }
+    }
+
+        isvalid=false;
+        while(!isvalid)
+        {
+            cout << "Enter height (in meters): ";
+            cin >> height;
+            if (cin.fail() || height < MIN_HEIGHT || height > MAX_HEIGHT) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input. Please enter a number between " << MIN_HEIGHT << " and " << MAX_HEIGHT << "." << endl;
+            }
+            else
             {
-                isvalid=false;
-                cout<<"Invalid Input. Please try Again \n Tip: (Please add postive(+) and negative(-) and try again."<<endl;
+                isvalid=true;
+                break;
+            }
+        }
+        
+
+        isvalid=false;
+        while(!isvalid)
+        {
+            cout << "Enter weight (in kilograms): ";
+            cin >> weight;
+            if (cin.fail() || weight < MIN_WEIGHT || weight > MAX_WEIGHT) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input. Please enter a number between " << MIN_WEIGHT << " and " << MAX_WEIGHT << "." << endl;
+            }
+            else {
+                isvalid=true;
+                break;
+            }
+        }
+
+        isvalid=false;
+        while(!isvalid)
+        {
+            cout << "Enter age: ";
+            cin >> age;
+            if (cin.fail() || age < MIN_AGE || age > MAX_AGE) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input. Please enter a number between " << MIN_AGE << " and " << MAX_AGE << "." << endl;
+            }
+            else
+            {
+                isvalid=true;
+                break;
+            }
+        }
+        isvalid=false;
+        while(!isvalid)
+        {
+            cout << "Enter Diet(Vegetarian/Non-Vegetarian): ";
+            cin >> dietype;
+            if(dietype!="Vegetarian" && dietype!="Non-Vegetarian" && dietype!="vegetarian" && dietype!="non-vegetarian" && dietype!="Non-vegetarian"){
+                cout<<"Invalid input. please type between Vegetarian or Non-vegetarian"<<endl;
+
             }
             else{
                 isvalid=true;
+                break;
             }
-            }
-            isvalid=false;
-            while(!isvalid)
+
+
+        }
+        if(dietype=="Vegetarian"&&"vegetarian")
             {
-                cout << "Enter height (in meters): ";
-                cin >> height;
-                if (cin.fail() || height < MIN_HEIGHT || height > MAX_HEIGHT) {
-                    cin.clear(); 
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
-                    cout << "Invalid input. Please enter a number between " << MIN_HEIGHT << " and " << MAX_HEIGHT << "." << endl;
-                    isvalid=false;
-                } 
-                else 
-                {
-                    isvalid=true;
-                    break; 
-                }
+                veg=true;
             }
-    
-            
-            isvalid=false;
-            while(!isvalid)
-            {
-                cout << "Enter weight (in kilograms): ";
-                cin >> weight;
-                if (cin.fail() || weight < MIN_WEIGHT || weight > MAX_WEIGHT) {
-                    cin.clear(); 
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
-                    cout << "Invalid input. Please enter a number between " << MIN_WEIGHT << " and " << MAX_WEIGHT << "." << endl;
-                    isvalid=false;
-                } 
-                else {
-                    isvalid=true;
-                    break; 
-                }
-            }
-            isvalid=false;
-            while(!isvalid)
-            {
-                cout << "Enter age: ";
-                cin >> age;
-                if (cin.fail() || age < MIN_AGE || age > MAX_AGE) {
-                    cin.clear(); 
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
-                    cout << "Invalid input. Please enter a number between " << MIN_AGE << " and " << MAX_AGE << "." << endl;
-                    isvalid=false;
-                } 
-                else 
-                {
-                    isvalid=true;
-                    break; 
-                }
-            }
-            
-            
-    }
+        else{
+            veg=false;
+        }
+
+    };
 
     // Function to calculate BMI
-    float calculateBMI() 
+    float calculateBMI()
     {
         return weight / (height * height);
     }
 
     // Function to calculate Fat Percentage
-    float calculateFatPercentage() 
+    float calculateFatPercentage()
     {
         float bmi = calculateBMI();
         if (sex == 'M') {
-            return (1.2 * bmi) + (0.23 * age) - 5.4 - (10.8 * (sex == 'M'));
+            return (1.2 * bmi) + (0.23 * age) - 16.2 ;
         } else {
-            return (1.2 * bmi) + (0.23 * age) - 16.2 - (10.8 * (sex == 'F'));
+            return (1.2 * bmi) + (0.23 * age) - 5.4;
         }
     }
 
     // Function to determine diet plan
-    void determineDietPlan() {
-        float bmi = calculateBMI();
-        float fatPercentage = calculateFatPercentage();
+    void determineDietPlan()
+    {
+    float bmi = calculateBMI();
+    float fatPercentage = calculateFatPercentage();
 
-        cout << "BMI: " << bmi << endl;
-        cout << "Fat Percentage: " << fatPercentage << endl;
+    cout << "BMI: " << bmi << endl;
+    cout << "Fat Percentage: " << fatPercentage << endl;
+    string goal;
 
-        if (bmi < 18.5 || (sex == 'M' && fatPercentage < 14) || (sex == 'F' && fatPercentage < 20)) {
-            cout <<"yaha apna normal logo ka diet plan aayega" << endl;
+    if (sex == 'M') {
+        if (bmi < 18.5) {
+            goal = "Underweight";
+        } else if (bmi >= 18.5 && bmi < 25) {
+            goal = "Healthy";
         } else {
-            
-            cout << "idhar apne usse khud ka diet plan banwayenge " << endl;
+            goal = "Overweight";
         }
+    } else if (sex == 'F') {
+        if (bmi < 18.5) {
+            goal = "Underweight";
+        } else if (bmi >= 18.5 && bmi < 25) {
+            goal = "Healthy";
+        } else {
+            goal = "Overweight";
+        }
+    
+    }
+    
+    
+
     }
 };
