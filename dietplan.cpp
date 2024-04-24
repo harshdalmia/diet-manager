@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-
+#include "DietInput.cpp"
 using namespace std;
 
 class DietType {
@@ -19,6 +19,9 @@ public:
         string nonveglunch;
         string nonvegsnacks;
         string nonvegdinner;
+        int mcal;
+        int gcal;
+        int lcal;
     };
 
 public:
@@ -49,14 +52,15 @@ public:
 
 class VegDiet : public DietType {
 public:
-    VegDiet(goal) : goal(goal) {
+    VegDiet(string goal) {
+    this->goal = goal;
         // Adjust calories based on goal
-        if (goal == "Lose") {
+        if (goal == "Underweight") {
             dietPlan.breakfastCalories -= 100;
             dietPlan.lunchCalories -= 100;
             dietPlan.snacksCalories -= 50;
             dietPlan.dinnerCalories -= 200;
-        } else if (goal == "Gain") {
+        } else if (goal == "Overweight") {
             dietPlan.breakfastCalories += 100;
             dietPlan.lunchCalories += 100;
             dietPlan.snacksCalories += 50;
@@ -78,14 +82,15 @@ public:
 
 class NonVegDiet : public DietType {
 public:
-    NonVegDiet(goal) : goal(goal) {
+    NonVegDiet(string goal) {
+    this->goal = goal;
         // Adjust calories based on goal
-        if (goal == "Lose") {
+        if (goal == "Underweight") {
             dietPlan.breakfastCalories -= 100;
             dietPlan.lunchCalories -= 100;
             dietPlan.snacksCalories -= 50;
             dietPlan.dinnerCalories -= 200;
-        } else if (goal == "Gain") {
+        } else if (goal == "Overweight") {
             dietPlan.breakfastCalories += 100;
             dietPlan.lunchCalories += 100;
             dietPlan.snacksCalories += 50;
@@ -106,29 +111,26 @@ public:
 };
 
 
-int main() {
-    char dietChoice;
-    cout << "Are you vegetarian or non-vegetarian? (V/N): ";
-    cin >> dietChoice;
-
-    string goal;
-    cout << "Select your weight goal (Maintain/Lose/Gain): ";
-    cin >> goal;
-
+int func() {
     DietType *dietType;
+    dietdetails d;
+    d.inputUserDetails();
+    d.determineDietPlan();
+    string diet;
 
-    if (dietChoice == 'V' || dietChoice == 'v') {
-        dietType = new VegDiet(goal);
-    } else if (dietChoice == 'N' || dietChoice == 'n') {
-        dietType = new NonVegDiet(goal);
+    if (d.veg==1) {
+        diet = new VegDiet(d.goal);
+    } else if (d.veg==0) {
+        diet = new NonVegDiet(d.goal);
     } else {
         cout << "Invalid choice!" << endl;
         return 1;
     }
 
-    dietType->printDietPlan();
-
-    delete dietType;
-
+    diet->printDietPlan();
+    return 0;
+}
+int main() {
+    func();
     return 0;
 }
