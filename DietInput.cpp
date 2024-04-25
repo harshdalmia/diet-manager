@@ -158,7 +158,7 @@ public:
 
 
         }
-        if(dietype=="Vegetarian"&&"vegetarian")
+        if(dietype=="Vegetarian"|| dietype=="vegetarian")
             {
                 veg=true;
             }
