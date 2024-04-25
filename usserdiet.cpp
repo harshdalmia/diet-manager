@@ -1,127 +1,127 @@
 #include <iostream>
 #include <string>
+#include <limits>
 using namespace std;
 int totalbfoodcal;
-int losscal,gaincal,maintaincal;
-void variables(int l,int g,int m)
-{
-    losscal= l;
-    gaincal=g;
-    maintaincal =m;
-}
+int losscal=2550,gaincal=1650,maintaincal=2100;
+
 void breakfast()
 {
-    cout<<" please enter nmber of items you eat in breakfaast"<<endl;
+    cout<<"Please enter the number of items you eat in breakfast: "<<endl;
     int itemsb;
     cin>>itemsb;
-    string bfooditems[itemsb];
-    int bfooditemscal[itemsb];
+    string bfooditems;
+    int bfooditemscal;
     for(int i =0;i<itemsb;i++)
     {
-        cout<<"enter food name "<<endl;
-        cin>>bfooditems[i];
-        cout<<"enter the calories  of "<<bfooditems[i]<<endl;
-        cin>>bfooditemscal[i];
-        totalbfoodcal+=bfooditemscal[i];
+        cout<<"Enter food name "<<i+1<<endl;
+        cin>>bfooditems;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout<<"Enter the calories of "<<bfooditems<<endl;
+        cin>>bfooditemscal;
+        totalbfoodcal+=bfooditemscal;
     }
 }
- int totallfoodcal;
+int totallfoodcal;
 void  lunch()
 {
-    cout<<" please enter nmber of items you eat in lunch"<<endl;
+    cout<<"Please enter the number of items you eat in lunch"<<endl;
     int itemsl;
     cin>>itemsl;
-    string lfooditems[itemsl];
-    int lfooditemscal[itemsl];
+    string lfooditems;
+    int lfooditemscal;
    
     for(int i =0;i<itemsl;i++)
     {
-        cout<<"enter food name "<<endl;
-        cin>>lfooditems[i];
-        cout<<"enter the calories  of "<<lfooditems[i]<<endl;
-        cin>>lfooditemscal[i];
-        totallfoodcal+=lfooditemscal[i];
+        cout<<"Enter food name "<<i+1<<endl;
+        cin>>lfooditems;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout<<"Enter the calories  of "<<lfooditems<<endl;
+        cin>>lfooditemscal;
+        totallfoodcal+=lfooditemscal;
     }
 }
 int  totalsfoodcal;
 void snacks()
 {
-    cout<<" please enter nmber of items you eat in snacks"<<endl;
+    cout<<"Please enter the number of items you eat in snacks"<<endl;
     int itemss;
     cin>>itemss;
-    string sfooditems[itemss];
-    int sfooditemscal[itemss];
+    string sfooditems;
+    int sfooditemscal;
    
     for(int i =0;i<itemss;i++)
     {
-        cout<<"enter food name "<<endl;
-        cin>>sfooditems[i];
-        cout<<"enter the calories  of "<<sfooditems[i]<<endl;
-        cin>>sfooditems[i];
-        totalsfoodcal=totalsfoodcal+sfooditemscal[i];
+        cout<<"Enter food name "<<i+1<<endl;
+        cin>>sfooditems;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout<<"Enter the calories  of "<<sfooditems<<endl;
+        cin>>sfooditemscal;
+        totalsfoodcal=totalsfoodcal+sfooditemscal;
     }
 }
 int totaldfoodcal;
 void dinner(){
-    cout<<" please enter nmber of items you eat in snacks"<<endl;
+    cout<<"Please enter the number of items you eat in dinner "<<endl;
     int itemsd;
     cin>>itemsd;
-    string dfooditems[itemsd];
-    int dfooditemscal[itemsd];
+    string dfooditems;
+    int dfooditemscal;
    
     for(int i =0;i<itemsd;i++)
     {
-        cout<<"enter food name "<<endl;
-        cin>>dfooditems[i];
-        cout<<"enter the calories  of "<<dfooditems[i]<<endl;
-        cin>>dfooditems[i];
-        totaldfoodcal=totaldfoodcal +dfooditemscal[i];
+        cout<<"Enter food name "<<i+1<<endl;
+        cin>>dfooditems;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout<<"Enter the calories  of "<<dfooditems<<endl;
+        cin>>dfooditemscal;
+        totaldfoodcal=totaldfoodcal +dfooditemscal;
     }
 }
-int finalcalories= totalbfoodcal+totallfoodcal+totalsfoodcal+totaldfoodcal;
+int finalcalories;
 void display(string goals) 
 {
-    cout<< "your total calories are"<<finalcalories<<endl;
+    cout<<goals;
+    finalcalories= totalbfoodcal+totallfoodcal+totalsfoodcal+totaldfoodcal;
+    cout<< "Your total calories are: "<<finalcalories<<endl;
     if(goals=="Underweight")
     {
-        cout<<"your reqired calories are"<<losscal<<endl;//need to enter required caloreies;
+        cout<<"Your required calories are "<<losscal<<endl;//need to enter required caloreies;
         if(finalcalories-losscal>0)
         {
-            cout << "you need to create a deficit of" <<(finalcalories-losscal)<<endl;//need to enter finalcalories -requiredcalories and either deficit or surplus
+            cout << "You need to create diet plan a deficit of " <<(finalcalories-losscal)<<"calories"<<endl;//need to enter finalcalories -requiredcalories and either deficit or surplus
         }
         else if(finalcalories-losscal<=0)
         {
-            cout << "you can continue your diet plan" <<(finalcalories-losscal)<<endl;//need to enter finalcalories -requiredcalories and either deficit or surplus
+            cout << "You can continue with your diet plan " <<(finalcalories-losscal)<<endl;//need to enter finalcalories -requiredcalories and either deficit or surplus
         }
     }  
     if(goals=="Overweight")
     {
-        cout<<"your reqired calories are"<<gaincal<<endl;//need to enter required caloreies;
+        cout<<"Your required calories are "<<gaincal<<endl;//need to enter required caloreies;
         if(finalcalories-gaincal>0)
         {
-            cout << "you need to create a deficit of"<<(finalcalories-gaincal) <<endl;//need to enter finalcalories -requiredcalories and either deficit or surplus
+            cout << "You need to create a diet plan deficit of "<<(finalcalories-gaincal)<<"calories" <<endl;//need to enter finalcalories -requiredcalories and either deficit or surplus
         }
         else if(finalcalories-gaincal<=0)
         {
-            cout << "you can continue your diet plan"<<(finalcalories-gaincal)<<endl;//need to enter finalcalories -requiredcalories and either deficit or surplus
+            cout << "You can continue with your diet plan "<<(finalcalories-gaincal)<<endl;//need to enter finalcalories -requiredcalories and either deficit or surplus
         }
     }
     if(goals=="Healthy")
     {
-        cout<<"your reqired calories are"<<maintaincal<<endl;//need to enter required caloreies;
+        cout<<"Your required calories are: "<<maintaincal<<endl;//need to enter required caloreies;
         if(finalcalories-maintaincal>0)
         {
-            cout << "you need to create a deficit of"<<(finalcalories-maintaincal) <<endl;
+            cout << "You need to create a diet plan deficit of "<<(finalcalories-maintaincal)<<"calories" <<endl;
         }
         else if(finalcalories-maintaincal==0)
         {
-            cout << "you can continue your diet plan" <<endl;
+            cout << "You can continue with your diet plan" <<endl;
         }
         else
         {
-            cout<< "you need to create a surplus of"<<(finalcalories-maintaincal)<<endl;
+            cout<< "You need to create a diet plan surplus of "<<(finalcalories-maintaincal)<<"calories"<<endl;
         }
 }
 }
-
-
